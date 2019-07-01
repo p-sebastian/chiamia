@@ -1,0 +1,18 @@
+{
+  "presets": ["next/babel", "@zeit/next-typescript/babel"],
+  "plugins": [
+    ["styled-components", { "ssr": true }],
+    ["module-resolver", {
+        "alias": {
+          "@common": "./src/components/common",
+          "@components": "./src/components",
+          "@screens": "./src/screens",
+          "@utils": "./src/utils",
+          "@reducers": "./src/redux/reducers",
+          "@epics": "./src/redux/epics",
+          "@actions": "./src/redux/actions",
+          "@hooks": "./src/hooks"
+        }
+      }]
+  ]
+}
