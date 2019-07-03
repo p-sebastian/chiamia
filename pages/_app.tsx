@@ -4,13 +4,17 @@ import { Container } from 'next/app';
 import { TApp } from '../src/utils/types.util';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from '@utils/theme.util';
 
 const App: TApp = ({ Component, pageProps, store }) => (
-  <Container>
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
-  </Container>
+  <MuiThemeProvider theme={theme}>
+    <Container>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </Container>
+  </MuiThemeProvider>
 );
 
 App.getInitialProps = async ({ Component, ctx }) => {

@@ -6,6 +6,7 @@
         "alias": {
           "@common": "./src/components/common",
           "@components": "./src/components",
+          "@hoc": "./src/components/hoc",
           "@screens": "./src/screens",
           "@utils": "./src/utils",
           "@reducers": "./src/redux/reducers",

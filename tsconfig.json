@@ -28,6 +28,7 @@
     "paths": {
       "@common/*": ["components/common/*"],
       "@components/*": ["components/*"],
+      "@hoc/*": ["components/hoc/*"],
       "@screens/*": ["screens/*"],
       "@utils/*": ["utils/*"],
       "@reducers/*": ["redux/reducers/*"],
@@ -39,7 +40,8 @@
     "emitDecoratorMetadata": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "pages/**/*"
   ],
   "exclude": ["node_modules"]
 }
