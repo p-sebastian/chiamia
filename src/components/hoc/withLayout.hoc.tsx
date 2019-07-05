@@ -1,23 +1,51 @@
-import React, { ComponentType } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
+import { HOC } from '@utils/types.util';
+import { useResize } from '@hooks/useResize.hook';
+import { useADispatch } from '@utils/recipes.util';
+import { setContentDimesions } from '@actions/screen.actions';
 
-type TWithLayout = (Page: ComponentType) => ComponentType;
-const withLayout: TWithLayout = Page => () => (
+const withLayout: HOC = Page => () => {
+  const dimensions = useResize ();
+  const dispatch = useADispatch ();
+  dispatch (setContentDimesions (dimensions));
+  return (
     <Container>
-      <AppBar position="sticky">
-        <Toolbar>
-          <Typography>Chiamia</Typography>
-        </Toolbar>
-      </AppBar>
-      <Page />
+      <Left>
+        <Sidebar>
+          <Title>Chiamia</Title>
+        </Sidebar>
+      </Left>
+      <Right>
+        <Page />
+      </Right>
     </Container>
-);
+  );
+};
 
 const Container = styled.div`
   flex-grow: 1;
+  position: relative;
+`;
+const Left = styled.div`
+  position: fixed;
+  width: 20%;
+  height: 100vh;
+  background-color: #edf0f3;
+`;
+const Right = styled.div`
+  width: 80%;
+  float: right;
+`;
+const Sidebar = styled.div`
+  padding: 30px 4.347826086957%;
+  flex: 1;
+`;
+const Title = styled (Typography).attrs (() => ({ variant: 'h1' }))`
+  text-align: center;
+  font-size: 26px !important;
+  color: #7b7b7b !important;
 `;
 
 export default withLayout;

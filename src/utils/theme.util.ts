@@ -7,7 +7,7 @@ const theme = createMuiTheme ();
 
 theme.typography.fontFamily = 'dank-mono';
 // Title of card, main title
-// theme.typography.h1.fontFamily = 'roboto';
+theme.typography.h1.fontFamily = 'roboto';
 theme.typography.h1.fontSize = '18px';
 theme.typography.h1.lineHeight = '24px';
 theme.typography.h1.fontWeight = 'bolder';

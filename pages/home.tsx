@@ -1,31 +1,42 @@
 import React from 'react';
-import Link from 'next/link';
 import withLayout from '@hoc/withLayout.hoc';
-import { Typography } from '@material-ui/core';
-import CCard from '@common/Card.component';
 import styled from 'styled-components';
+import CCard from '@common/Card.component';
+import CSection from '@common/Section.component';
+import CArticle from '@common/Article.component';
+
 
 const HomePage = () => {
   return (
     <div>
-      <Typography variant="h1">Some title</Typography>
-      <Typography variant="h2">Some title</Typography>
-      <Typography variant="h3">Some title</Typography>
-      <Typography variant="caption">Some title</Typography>
-      <Typography variant="subtitle1">Some title</Typography>
-      <Typography variant="subtitle2">Some title</Typography>
-      <Section>
+      {/* <Splash/> */}
+      <CSection>
         <CCard/>
-      </Section>
-      {/* <Link href="/About">
-        <button>Go to About</button>
-      </Link> */}
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+        <CCard/>
+      </CSection>
+      <CSection isArticle>
+        <CArticle />
+      </CSection>
     </div>
   );
 };
 
-const Section = styled.div`
-  width: 50%;
+const Splash = styled.div`
+  height: 100vh;
+  width: 100%;
+  background-color: rgb(33, 38, 34);
 `;
 
 export default withLayout (HomePage);

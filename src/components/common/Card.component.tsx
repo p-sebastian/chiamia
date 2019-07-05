@@ -1,13 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useRef, useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
 import Typography from '@material-ui/core/Typography';
+import withGrid from '@components/hoc/withGrid.hoc';
+import { useAShallowSelector } from '@utils/recipes.util';
+import { ScreenState } from '@reducers/index';
+import { zoomAnimate } from '@utils/keyframes.util';
 
 const src = 'https://www.underconsideration.com/brandnew/archives/atlanta_humane_society_logo_before_after.png';
 const alt = 'New Logo and Identity for Atlanta Humane Society by Matchstic';
 const CCard: React.FC = () => {
+  const screenDimensions = useAShallowSelector (state => state.screen);
+  const [transform, dimensions, onClick] = useTransform (screenDimensions);
+  const ref = useRef<HTMLDivElement> (null);
   return (
-    <Module>
-      <Anchor>
+    <Module ref={ref}>
+      <Anchor onClick={onClick (ref)}>
         <OnHover>
           <Header>
             <Subtitle1>
@@ -22,9 +29,64 @@ const CCard: React.FC = () => {
           </Content>
         </OnHover>
       </Anchor>
+      {renderPlaceholder (dimensions, screenDimensions, transform)}
     </Module>
   );
 };
+
+type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
+type RP = (dimensions: Dimensions, screenDimensions: ScreenState, transform: string) => void;
+type Ref<E = HTMLDivElement> = React.RefObject<E>;
+// type OnClick =
+//   (ref: Ref, setDimensions: any) => () => void;
+// const onClick: OnClick = (ref, setDimensions) => () => {
+//   const { height, width, left, top, right } = ref.current!.getBoundingClientRect ();
+//   setDimensions ({ height, width, left, top, right });
+// };
+type UseTransform = (screenDimensions: ScreenState) => any;
+const useTransform: UseTransform = ({ screenHeight, screenWidth }) => {
+  const [transform, setTransform] = useState (['', '']);
+  const [dimensions, setDimensions] = useState ({ width: 0, height: 0, left: 0, top: 0, right: 0 });
+
+  const onClick = (ref: Ref) => () => {
+    const { height, width, left, top, right } = ref.current!.getBoundingClientRect ();
+    // Margin of card
+    // space in the left minus the size of the sidebar
+    // which in this case is 20% the screen size
+    const x = left - screenWidth * 0.2;
+    const from = `scale3d(${width / screenWidth}, ${height / screenHeight}, 1)`;
+    const to = `translate3d(-${x}px, -${top}px, 0) scale3d(0.8, 1, 1)`;
+
+    setDimensions ({ height, width, left, top, right });
+    setTransform ([from, to]);
+  };
+  return [transform, dimensions, onClick];
+};
+
+const renderPlaceholder: RP = (dimensions, screenDimensions, transform) => {
+  const { width, height } = dimensions;
+  // console.info (width, height, dimensions.left);
+  if (width + height === 0) { return null; }
+  const props = { ...dimensions, ...screenDimensions, transform };
+  return <Placeholder {...props as any} />;
+};
+
+
+type PlaceholderProps = Dimensions & ScreenState & { transform: string[] };
+const Placeholder = styled.div<PlaceholderProps>`
+  pointer-events: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  top: 0;
+  background: blue;
+  transform-origin: 0 0;
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.165,0.84,0.44,1);
+  animation-fill-mode: forwards;
+  animation-name: ${({ transform }) => zoomAnimate (transform[0], transform[1])};
+`;
 
 const Module = styled.div`
   width: 92%;
@@ -101,5 +163,4 @@ const Image = styled.img`
   padding: 0;
 `;
 
-
-export default CCard;
+export default withGrid (CCard);

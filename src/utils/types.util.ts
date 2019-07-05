@@ -1,6 +1,6 @@
 import { FC, ComponentType } from 'react';
 import { NextJSAppContext, AppProps } from 'next-redux-wrapper';
-
+import { BlogActionsType, ScreenActionsType } from '@actions/index';
 
 export type TApp = FC<{
   Component: ComponentType,
@@ -12,3 +12,10 @@ export type TApp = FC<{
     pageProps: {};
   }>;
 };
+
+export type HOC<T = {}> = (Page: ComponentType, options?: T) => ComponentType;
+
+/**
+ * Contains all actions
+ */
+export type TActions = BlogActionsType | ScreenActionsType;
