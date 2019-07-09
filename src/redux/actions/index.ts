@@ -1,4 +1,4 @@
-import { ActionType } from 'typesafe-actions';
+import { ActionType  } from 'typesafe-actions';
 
 import * as blogActions from './blog.actions';
 export type BlogActionsType = ActionType<typeof blogActions>;

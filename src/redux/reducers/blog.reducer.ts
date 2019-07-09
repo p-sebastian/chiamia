@@ -9,7 +9,7 @@ export const blogReducer =
   (state = DEFAULT_STATE, action: BlogActionsType) => {
 
   switch (action.type) {
-    case BLOG_ALL: return { blogs: action.payload };
+    case BLOG_ALL: return { ...state, blogs: action.payload };
     default: return state;
   }
 };

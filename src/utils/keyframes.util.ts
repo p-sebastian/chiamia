@@ -1,11 +1,15 @@
 import { keyframes } from 'styled-components';
 
 export const zoomAnimate = (fromTransform: string, toTransform: string) => keyframes`
-  from {
+  0% {
     transform: ${fromTransform};
   }
 
-  to {
+  /* 30% {
+    transform: ${fromTransform};
+  } */
+
+  100% {
     transform: ${toTransform};
   }
 `;

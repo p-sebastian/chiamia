@@ -1,11 +1,13 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
+import { useASelector } from '@utils/recipes.util';
 
 const CArticle: React.FC = () => {
+  const didAnimEnd = useASelector (state => state.screen.didAnimEnd);
 
   return (
-    <Container>
+    <Container didAnimEnd={didAnimEnd}>
       <Typography variant="h1">Some title</Typography>
       <Typography variant="body1">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin iaculis nibh sem, eget dictum arcu lobortis scelerisque. Pellentesque maximus semper dictum. Vestibulum facilisis tempor dui, sed lacinia mi sodales a. Integer ultrices laoreet blandit. Sed ullamcorper, erat quis rhoncus commodo, dolor enim ultricies odio, eget luctus est metus ut dolor. Nunc eget lacus mi. Vestibulum ultricies ultricies interdum. Etiam malesuada, nisi quis mollis elementum, felis dui posuere lorem, eget scelerisque urna libero at enim. Morbi vitae nulla quam. Aliquam eleifend eu arcu vitae pretium. Praesent ut consequat neque, sed fringilla urna. Suspendisse posuere at erat nec sagittis. Quisque semper suscipit arcu vitae ultricies.
@@ -18,8 +20,14 @@ Ut velit lorem, pulvinar ac tellus eleifend, dictum ultrices magna. Morbi pretiu
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ didAnimEnd: boolean }>`
   height: 100vh;
+  ${({ didAnimEnd }) => didAnimEnd ? `
+    opacity: 1;
+    z-index: 100;
+  ` : `
+    opacity: 0;
+  `};
 `;
 
 export default CArticle;

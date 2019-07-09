@@ -2,14 +2,16 @@ import React, { useRef, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import withGrid from '@components/hoc/withGrid.hoc';
-import { useAShallowSelector } from '@utils/recipes.util';
+import { useAShallowSelector, useADispatch } from '@utils/recipes.util';
 import { ScreenState } from '@reducers/index';
 import { zoomAnimate } from '@utils/keyframes.util';
+import { toggleArticle } from '@actions/screen.actions';
 
 const src = 'https://www.underconsideration.com/brandnew/archives/atlanta_humane_society_logo_before_after.png';
 const alt = 'New Logo and Identity for Atlanta Humane Society by Matchstic';
 const CCard: React.FC = () => {
   const screenDimensions = useAShallowSelector (state => state.screen);
+  const dispatch = useADispatch ();
   const [transform, dimensions, onClick] = useTransform (screenDimensions);
   const ref = useRef<HTMLDivElement> (null);
   return (
@@ -29,20 +31,14 @@ const CCard: React.FC = () => {
           </Content>
         </OnHover>
       </Anchor>
-      {renderPlaceholder (dimensions, screenDimensions, transform)}
+      {renderPlaceholder (dimensions, screenDimensions, transform, dispatch)}
     </Module>
   );
 };
 
 type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
-type RP = (dimensions: Dimensions, screenDimensions: ScreenState, transform: string) => void;
+type RP = (dimensions: Dimensions, screenDimensions: ScreenState, transform: string, dispatch: ReturnType<typeof useADispatch>) => void;
 type Ref<E = HTMLDivElement> = React.RefObject<E>;
-// type OnClick =
-//   (ref: Ref, setDimensions: any) => () => void;
-// const onClick: OnClick = (ref, setDimensions) => () => {
-//   const { height, width, left, top, right } = ref.current!.getBoundingClientRect ();
-//   setDimensions ({ height, width, left, top, right });
-// };
 type UseTransform = (screenDimensions: ScreenState) => any;
 const useTransform: UseTransform = ({ screenHeight, screenWidth }) => {
   const [transform, setTransform] = useState (['', '']);
@@ -63,14 +59,13 @@ const useTransform: UseTransform = ({ screenHeight, screenWidth }) => {
   return [transform, dimensions, onClick];
 };
 
-const renderPlaceholder: RP = (dimensions, screenDimensions, transform) => {
+const renderPlaceholder: RP = (dimensions, screenDimensions, transform, dispatch) => {
   const { width, height } = dimensions;
   // console.info (width, height, dimensions.left);
   if (width + height === 0) { return null; }
   const props = { ...dimensions, ...screenDimensions, transform };
-  return <Placeholder {...props as any} />;
+  return <Placeholder onAnimationEnd={() => dispatch (toggleArticle (true))} {...props as any} />;
 };
-
 
 type PlaceholderProps = Dimensions & ScreenState & { transform: string[] };
 const Placeholder = styled.div<PlaceholderProps>`
@@ -80,9 +75,9 @@ const Placeholder = styled.div<PlaceholderProps>`
   height: 100vh;
   z-index: 100;
   top: 0;
-  background: blue;
+  background: white;
   transform-origin: 0 0;
-  animation-duration: 0.5s;
+  animation-duration: 0.8s;
   animation-timing-function: cubic-bezier(0.165,0.84,0.44,1);
   animation-fill-mode: forwards;
   animation-name: ${({ transform }) => zoomAnimate (transform[0], transform[1])};

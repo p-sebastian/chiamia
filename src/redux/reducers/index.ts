@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 import { StateType } from 'typesafe-actions';
 import { blogReducer } from './blog.reducer';
