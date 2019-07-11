@@ -1,4 +1,3 @@
-import { ScreenState } from '@reducers/index';
 import { useState } from 'react';
 import { useAShallowSelector } from '@utils/recipes.util';
 

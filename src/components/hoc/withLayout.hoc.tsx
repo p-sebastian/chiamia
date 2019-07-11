@@ -32,7 +32,7 @@ const Left = styled.div`
   position: fixed;
   width: 20%;
   height: 100vh;
-  background-color: #edf0f3;
+  background-image: linear-gradient(to bottom right, #FFFFFF, #FFD5C1);
 `;
 const Right = styled.div`
   width: 80%;
@@ -45,7 +45,7 @@ const Sidebar = styled.div`
 const Title = styled (Typography).attrs (() => ({ variant: 'h1' }))`
   text-align: center;
   font-size: 26px !important;
-  color: #7b7b7b !important;
+  color: rgb(33, 38, 34) !important;
 `;
 
 export default withLayout;

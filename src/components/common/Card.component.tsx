@@ -45,10 +45,12 @@ const OnHover = styled.div`
   box-shadow: 2px 2px 5px rgba(0,0,0,.2);
   transition: all .6s cubic-bezier(.165,.84,.44,1);
   background: #fff;
+  border-radius: 20px;
   & :hover::after {
     opacity: 1;
   }
   & ::after {
+    border-radius: 20px;
     content: "";
     position: absolute;
     top: 0;
@@ -65,29 +67,37 @@ const Anchor = styled.a`
   transition: all 250ms ease;
   text-decoration: none;
 `;
-const Header = styled.div`
-  padding: 15px 4.347826086957%;
-  background-color: #d9ffe4;
-  overflow: hidden;
-  border-bottom: 1px solid transparent;
-  ${OnHover}:hover & {
-    background-color: #fff !important;
-    border-bottom: 1px solid rgba(0,0,0,.15);
-    transition: all .6s cubic-bezier(.165,.84,.44,1);
-  }
-`;
 const Subtitle1 = styled (Typography).attrs (() => ({ variant: 'subtitle1' }))`
   position: relative;
   z-index: 1;
   line-height: 1.5em;
   padding: 0 0 10px;
-  border-bottom: 1px solid rgba(0,0,0,.15);
+  border-bottom: 1px solid white;
   margin: 0 0 10px;
 `;
 const H1 = styled (Typography).attrs (() => ({ variant: 'h1' }))`
   position: relative;
   z-index: 1;
   line-height: 1.35em;
+`;
+const Header = styled.div`
+  padding: 15px 4.347826086957%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-image: linear-gradient(to bottom right, #9634F7, #EB6F2D);
+  overflow: hidden;
+  border-bottom: 1px solid transparent;
+  ${OnHover}:hover & {
+    background-image: none !important;
+    border-bottom: 1px solid rgb(33, 38, 34);
+    ${Subtitle1}, ${H1} {
+      color: rgb(33, 38, 34);
+    }
+    ${Subtitle1} {
+      border-color: rgb(33, 38, 34);
+    }
+    transition: all .6s cubic-bezier(.165,.84,.44,1);
+  }
 `;
 const Content = styled.div`
   width: 100%;
@@ -106,6 +116,8 @@ const Image = styled.img`
   display: block;
   margin: 0;
   padding: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 `;
 
 export default withGrid (CCard);
