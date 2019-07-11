@@ -1,23 +1,7 @@
-import Document, { NextDocumentContext, Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheet, createGlobalStyle } from 'styled-components';
+import Document, { NextDocumentContext } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
+import ADocument from '@components/Document.component';
 
-const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'dank-mono';
-    src: url('/static/fonts/DankMono-Regular.ttf');
-  }
-  @font-face {
-    font-family: 'dank-mono-italic';
-    src: url('/static/fonts/DankMono-Italic.ttf');
-  }
-  @font-face {
-    font-family: 'fira-code-bold';
-    src: url('/static/fonts/FiraCode-Bold.ttf');
-  }
-  body {
-    margin: 0;
-  }
-`;
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: NextDocumentContext) {
     const sheet = new ServerStyleSheet ();
@@ -45,22 +29,6 @@ export default class MyDocument extends Document {
   }
 
   render() {
-    return (
-      <Html>
-        <Head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0"
-          />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-        </Head>
-        <body>
-          <GlobalStyle />
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    );
+    return <ADocument />;
   }
 }

@@ -13,3 +13,8 @@ export const zoomAnimate = (fromTransform: string, toTransform: string) => keyfr
     transform: ${toTransform};
   }
 `;
+
+export const opacityAnimate = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;

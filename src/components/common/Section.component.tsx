@@ -21,7 +21,7 @@ const Container = styled.div<{ isArticle: boolean, didAnimEnd: boolean }>`
       return `
         position: absolute;
         height: ${didAnimEnd ? '100vh' : '0'};
-        overflow: hidden;
+        overflow-y: scroll;
         left: 20%;
         top: 0;
         right: 0;

@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 import { useASelector } from '@utils/recipes.util';
+import { opacityAnimate } from '@utils/keyframes.util';
 
 const CArticle: React.FC = () => {
   const didAnimEnd = useASelector (state => state.screen.didAnimEnd);
@@ -22,12 +23,10 @@ Ut velit lorem, pulvinar ac tellus eleifend, dictum ultrices magna. Morbi pretiu
 
 const Container = styled.div<{ didAnimEnd: boolean }>`
   height: 100vh;
-  ${({ didAnimEnd }) => didAnimEnd ? `
-    opacity: 1;
-    z-index: 100;
-  ` : `
-    opacity: 0;
-  `};
+  animation: ${({ didAnimEnd }) => didAnimEnd ? opacityAnimate : ''} 0.6s;
+  ${({ didAnimEnd }) =>
+    didAnimEnd ? 'z-index: 100;' : 'opacity: 0;'
+  };
 `;
 
 export default CArticle;

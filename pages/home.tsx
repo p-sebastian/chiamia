@@ -5,8 +5,8 @@ import CCard from '@common/Card.component';
 import CSection from '@common/Section.component';
 import CArticle from '@common/Article.component';
 
-
 const HomePage = () => {
+
   return (
     <div>
       {/* <Splash/> */}
