@@ -14,7 +14,7 @@ export const zoomAnimate = (fromTransform: string, toTransform: string) => keyfr
   }
 `;
 
-export const opacityAnimate = keyframes`
-  from { opacity: 0; }
-  to { opacity: 1; }
+export const opacityAnimate = (hide = false) => keyframes`
+  from { opacity: ${hide ? 1 : 0}; }
+  to { opacity: ${hide ? 0 : 1}; }
 `;

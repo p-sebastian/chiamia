@@ -8,7 +8,7 @@ import CPlaceholder from '@components/Placeholder.component';
 const src = 'https://www.underconsideration.com/brandnew/archives/atlanta_humane_society_logo_before_after.png';
 const alt = 'New Logo and Identity for Atlanta Humane Society by Matchstic';
 const CCard: React.FC = () => {
-  const [transform, dimensions, onClick] = useTransform ();
+  const [dimensions, onClick] = useTransform ();
 
   const ref = useRef<HTMLDivElement> (null);
   return (
@@ -28,7 +28,7 @@ const CCard: React.FC = () => {
           </Content>
         </OnHover>
       </Anchor>
-      <CPlaceholder dimensions={dimensions} transform={transform} />
+      <CPlaceholder dimensions={dimensions} />
     </Module>
   );
 };
@@ -89,11 +89,12 @@ const Header = styled.div`
   border-bottom: 1px solid transparent;
   ${OnHover}:hover & {
     background-image: none !important;
-    border-bottom: 1px solid rgb(33, 38, 34);
-    ${Subtitle1}, ${H1} {
-      color: rgb(33, 38, 34);
+    border-bottom: 1px solid #9634F7;
+    ${H1} {
+      color: #9634F7;
     }
     ${Subtitle1} {
+      color: rgb(33, 38, 34);
       border-color: rgb(33, 38, 34);
     }
     transition: all .6s cubic-bezier(.165,.84,.44,1);

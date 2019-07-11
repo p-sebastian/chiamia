@@ -8,7 +8,7 @@ import CArticle from '@common/Article.component';
 const HomePage = () => {
 
   return (
-    <div>
+    <Container>
       {/* <Splash/> */}
       <CSection>
         <CCard/>
@@ -29,9 +29,13 @@ const HomePage = () => {
       <CSection isArticle>
         <CArticle />
       </CSection>
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  /* position: absolute; */
+`;
 
 const Splash = styled.div`
   height: 100vh;

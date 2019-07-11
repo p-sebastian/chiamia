@@ -2,7 +2,9 @@ import { action } from 'typesafe-actions';
 import {
   SCREEN_CONTENT_DIMENSIONS,
   SCREEN_PLACEHOLDER_CREATE,
-  SCREEN_TOGGLE_ARTICLE
+  SCREEN_TOGGLE_ARTICLE,
+  SCREEN_TOGGLE_EXPANSION,
+  SCREEN_SET_TRANSFORM
 } from './types';
 
 export const createPlaceholder = (width: number, height: number) =>
@@ -14,3 +16,14 @@ export const setContentDimesions =
 
 export const toggleArticle = (show: boolean) =>
   action (SCREEN_TOGGLE_ARTICLE, show);
+
+/**
+ * Toggles expansion for placeholder animation
+ * @param isExpanding
+ */
+export const toggleExpansion = (isExpanding: boolean) =>
+  action (SCREEN_TOGGLE_EXPANSION, isExpanding);
+
+type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
+export const setPlaceholderTransform = (dimensions: Dimensions, transform: { from: string; to: string }) =>
+  action (SCREEN_SET_TRANSFORM, { dimensions, transform });
