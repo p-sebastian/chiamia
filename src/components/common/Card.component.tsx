@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
 import withGrid from '@components/hoc/withGrid.hoc';
@@ -8,7 +8,11 @@ import CPlaceholder from '@components/Placeholder.component';
 const src = 'https://www.underconsideration.com/brandnew/archives/atlanta_humane_society_logo_before_after.png';
 const alt = 'New Logo and Identity for Atlanta Humane Society by Matchstic';
 const CCard: React.FC = () => {
-  const [dimensions, onClick] = useTransform ();
+  const [dimensions, setDimensions, onClick] = useTransform ();
+  const reset = useCallback (
+    () => setDimensions ({ width: 0, height: 0, left: 0, top: 0, right: 0 }),
+    [dimensions]
+  );
 
   const ref = useRef<HTMLDivElement> (null);
   return (
@@ -28,7 +32,7 @@ const CCard: React.FC = () => {
           </Content>
         </OnHover>
       </Anchor>
-      <CPlaceholder dimensions={dimensions} />
+      <CPlaceholder reset={reset} dimensions={dimensions} />
     </Module>
   );
 };

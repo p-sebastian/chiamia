@@ -19,10 +19,10 @@ export const toggleArticle = (show: boolean) =>
 
 /**
  * Toggles expansion for placeholder animation
- * @param isExpanding
+ * @param isShowing
  */
-export const toggleExpansion = (isExpanding: boolean) =>
-  action (SCREEN_TOGGLE_EXPANSION, isExpanding);
+export const toggleExpansion = (isShowing: boolean) =>
+  action (SCREEN_TOGGLE_EXPANSION, isShowing);
 
 type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
 export const setPlaceholderTransform = (dimensions: Dimensions, transform: { from: string; to: string }) =>

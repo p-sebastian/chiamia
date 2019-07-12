@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { zoomAnimate } from '@utils/keyframes.util';
 import { useADispatch, useAShallowSelector, useASelector } from '@utils/recipes.util';
@@ -7,25 +7,43 @@ import { toggleArticle } from '@actions/screen.actions';
 type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
 type Props = {
   dimensions: Dimensions;
+  reset: () => void;
 };
-const CPlaceholder: React.FC<Props> = ({ dimensions }) => {
+const CPlaceholder: React.FC<Props> = ({ dimensions, reset }) => {
+  const [isExpanded, setIsExpanded] = useState (false);
   const transform = useAShallowSelector (state => state.screen.transform);
-  const isExpanding = useASelector (state => state.screen.isExpanding);
+  const isShowing = useASelector (state => state.screen.isShowing);
   const { width, height } = dimensions;
   const dispatch = useADispatch ();
 
-  if (width + height === 0 || !isExpanding) { return null; }
-
-  return <Placeholder className="placeholder-animate--show" transform={transform} onAnimationEnd={onAnimationEnd (dispatch)} />;
+  // only exists for the clicked card
+  if (width + height === 0) { return null; }
+  console.info (`size: ${width + height}`);
+  const classes = `placeholder-animate--${isShowing || !isExpanded ? 'show' : 'hide'}`;
+  return <Placeholder
+    className={classes}
+    transform={transform}
+    onAnimationEnd={onAnimationEnd (dispatch, isExpanded, isShowing, setIsExpanded, reset)}
+  />;
 };
 type RDispatch = ReturnType<typeof useADispatch>;
-const onAnimationEnd = (dispatch: RDispatch) => () => {
-  dispatch (toggleArticle (true));
-  /**
-   * Must edit the body here, since I can't access the _document with redux
-   * disables scrolling in the body to delegate the scroll to the article
-   */
-  document.body.classList.add ('noscroll');
+type OnAnimationEnd =
+  (dispatch: RDispatch, isExpanded: boolean, isShowing: boolean, setIsExpanded: any, reset: () => void) => () => void;
+const onAnimationEnd: OnAnimationEnd = (dispatch, isExpanded, isShowing, setIsExpanded, reset) => () => {
+  // first time it runs
+  if (isShowing && !isExpanded) {
+    /**
+     * Must edit the body here, since I can't access the _document with redux
+     * disables scrolling in the body to delegate the scroll to the article
+     */
+    document.body.classList.add ('noscroll');
+    setIsExpanded (true);
+    dispatch (toggleArticle (true));
+  } else {
+    document.body.classList.remove ('noscroll');
+    setIsExpanded (false);
+    reset ();
+  }
 };
 
 type PlaceholderProps = { transform: { from: string; to: string} };

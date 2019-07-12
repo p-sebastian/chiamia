@@ -4,7 +4,8 @@ import { setPlaceholderTransform } from '@actions/screen.actions';
 
 type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
 type Ref<E = HTMLDivElement> = React.RefObject<E>;
-type UseTransform = () => [Dimensions, (ref: Ref) => () => void];
+type SetDimensions = React.Dispatch<React.SetStateAction<Dimensions>>;
+type UseTransform = () => [Dimensions, SetDimensions, (ref: Ref) => () => void];
 export const useTransform: UseTransform = () => {
   const dispatch = useADispatch ();
   const screenState = useAShallowSelector (state => state.screen);
@@ -27,8 +28,8 @@ export const useTransform: UseTransform = () => {
     const to = `translate3d(-${x}px, -${top}px, 0) scale3d(0.8, 1, 1)`;
 
     setDimensions ({ height, width, left, top, right });
-    // setTransform ([from, to]);
+    // also begins expansion of placeholder
     dispatch (setPlaceholderTransform ({ height, width, left, top, right }, { from, to }));
   };
-  return [dimensions, onClick];
+  return [dimensions, setDimensions, onClick];
 };

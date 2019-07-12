@@ -7,18 +7,18 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Close } from '@material-ui/icons';
 import IconButton from '@material-ui/core/IconButton';
-import { toggleArticle, toggleExpansion } from '@actions/screen.actions';
+import { toggleArticle } from '@actions/screen.actions';
 
 const CArticle: React.FC = () => {
-  const didAnimEnd = useASelector (state => state.screen.didAnimEnd);
-  const classes = didAnimEnd ? 'article--show' : 'article--hide';
+  const showArticle = useASelector (state => state.screen.showArticle);
+  const classes = showArticle ? 'article--show' : 'article--hide';
   const dispatch = useADispatch ();
 
   return (
     <Container className={classes}>
       <SAppBar elevation={1} color="inherit" position="sticky">
         <Toolbar>
-          <SIconButton onClick={() => dispatch (toggleExpansion (false))}>
+          <SIconButton onClick={() => dispatch (toggleArticle (false))}>
             <Close />
           </SIconButton>
         </Toolbar>

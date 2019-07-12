@@ -5,12 +5,12 @@ import { useASelector } from '@utils/recipes.util';
 
 type Props = { isArticle?: boolean };
 const CSection: React.FC<Props> = ({ children, isArticle = false }) => {
-  const didAnimEnd = useASelector (state => state.screen.didAnimEnd);
+  const showArticle = useASelector (state => state.screen.showArticle);
   const top = useTop ();
   const classes = isArticle ? 'is-article' : '';
 
   return (
-    <Container className={classes} {...{ didAnimEnd, top }} >
+    <Container className={classes} {...{ showArticle, top }} >
       <Grid container spacing={0}>
         {children}
       </Grid>
@@ -27,10 +27,10 @@ const useTop = () => {
   });
   return top;
 };
-const Container = styled.div<{ didAnimEnd: boolean, top: number }>`
+const Container = styled.div<{ showArticle: boolean, top: number }>`
   &.is-article {
     position: absolute;
-    height: ${({ didAnimEnd }) => didAnimEnd ? '100vh' : '0'};
+    height: ${({ showArticle }) => showArticle ? '100vh' : '0'};
     overflow-y: scroll;
     left: 20%;
     top: ${({ top }) => top}px;
