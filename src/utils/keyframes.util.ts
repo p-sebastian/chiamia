@@ -1,16 +1,16 @@
 import { keyframes } from 'styled-components';
 
-export const zoomAnimate = (fromTransform: string, toTransform: string) => keyframes`
-  0% {
+export const zoomAnimate = (fromTransform: string, toTransform: string, invert = false) => keyframes`
+  ${invert ? 100 : 0}% {
     transform: ${fromTransform};
+    background-color: #CAD2E2;
+    border-radius: 20px;
   }
 
-  /* 30% {
-    transform: ${fromTransform};
-  } */
-
-  100% {
+  ${invert ? 0 : 100}% {
     transform: ${toTransform};
+    background-color: #ECECEC;
+    border-radius: 0px;
   }
 `;
 

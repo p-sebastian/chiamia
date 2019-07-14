@@ -33,12 +33,13 @@ const Left = styled.div`
   position: fixed;
   width: ${SIDEBAR_WIDTH}%;
   height: 100vh;
-  background-image: linear-gradient(to bottom right, #7821CE, #C087F8);
+  /* background-image: linear-gradient(to bottom right, #7821CE, #C087F8); */
+  background-color: #333333;
 `;
 const Right = styled.div`
   width: ${MAIN_WIDTH}%;
   float: right;
-  background-color: #EDEDED;
+  background-color: #CAD2E2;
 `;
 const Sidebar = styled.div`
   padding: 30px 4.347826086957%;

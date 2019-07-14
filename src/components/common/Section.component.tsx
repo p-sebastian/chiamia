@@ -8,13 +8,15 @@ type Props = { isArticle?: boolean };
 const CSection: React.FC<Props> = ({ children, isArticle = false }) => {
   const showArticle = useASelector (state => state.screen.showArticle);
   const top = useTop ();
-  const classes = isArticle ? 'is-article' : '';
+  const classes = isArticle ? 'is-article' : 'main';
 
   return (
     <Container className={classes} {...{ showArticle, top }} >
-      <Grid container spacing={0}>
-        {children}
-      </Grid>
+      <Content>
+        <Grid container spacing={0}>
+          {children}
+        </Grid>
+      </Content>
     </Container>
   );
 };
@@ -28,7 +30,15 @@ const useTop = () => {
   });
   return top;
 };
+const Content = styled.div`
+  max-width: 1000px;
+`;
 const Container = styled.div<{ showArticle: boolean, top: number }>`
+  &.main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
   &.is-article {
     position: absolute;
     height: ${({ showArticle }) => showArticle ? '100vh' : '0'};

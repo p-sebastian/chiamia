@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 `;
-const CDocument: React.FC = () =>( 
+const CDocument: React.FC = () => ( 
   <Html>
     <Head>
       <meta charSet="utf-8" />

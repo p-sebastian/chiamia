@@ -62,16 +62,16 @@ const Placeholder = styled.div<PlaceholderProps>`
   height: 100vh;
   z-index: 100;
   top: 0;
-  background-color: #ECECEC;
+  background-color: #CAD2E2;
   transform-origin: 0 0;
-  animation-duration: 0.8s;
+  animation-duration: 1s;
   animation-timing-function: cubic-bezier(0.165,0.84,0.44,1);
   animation-fill-mode: forwards;
   &.placeholder-animate--show {
     animation-name: ${({ transform }) => zoomAnimate (transform.from, transform.to)};
   }
   &.placeholder-animate--hide {
-    animation-name: ${({ transform }) => zoomAnimate (transform.to, transform.from)};
+    animation-name: ${({ transform }) => zoomAnimate (transform.from, transform.to, true)};
   }
 `;
 

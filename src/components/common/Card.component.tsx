@@ -88,7 +88,7 @@ const Header = styled.div`
   padding: 15px 4.347826086957%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  background-image: linear-gradient(to bottom right, #9634F7, #EB6F2D);
+  background-image: linear-gradient(to bottom right, #5186FC, #1AD384);
   overflow: hidden;
   border-bottom: 1px solid transparent;
   ${OnHover}:hover & {
