@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import { useASelector } from '@utils/recipes.util';
+import { SIDEBAR_WIDTH } from '@utils/constants.util';
 
 type Props = { isArticle?: boolean };
 const CSection: React.FC<Props> = ({ children, isArticle = false }) => {
@@ -32,7 +33,7 @@ const Container = styled.div<{ showArticle: boolean, top: number }>`
     position: absolute;
     height: ${({ showArticle }) => showArticle ? '100vh' : '0'};
     overflow-y: scroll;
-    left: 20%;
+    left: ${SIDEBAR_WIDTH}%;
     top: ${({ top }) => top}px;
     right: 0;
     bottom: 0;

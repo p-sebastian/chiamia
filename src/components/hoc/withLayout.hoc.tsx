@@ -5,6 +5,7 @@ import { HOC } from '@utils/types.util';
 import { useResize } from '@hooks/useResize.hook';
 import { useADispatch } from '@utils/recipes.util';
 import { setContentDimesions } from '@actions/screen.actions';
+import { SIDEBAR_WIDTH, MAIN_WIDTH } from '@utils/constants.util';
 
 const withLayout: HOC = Page => () => {
   const dimensions = useResize ();
@@ -30,12 +31,12 @@ const Container = styled.div`
 `;
 const Left = styled.div`
   position: fixed;
-  width: 20%;
+  width: ${SIDEBAR_WIDTH}%;
   height: 100vh;
   background-image: linear-gradient(to bottom right, #7821CE, #C087F8);
 `;
 const Right = styled.div`
-  width: 80%;
+  width: ${MAIN_WIDTH}%;
   float: right;
   background-color: #EDEDED;
 `;

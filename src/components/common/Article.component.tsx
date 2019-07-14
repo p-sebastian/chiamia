@@ -13,6 +13,7 @@ import Jumbotron from './Jumbotron.component';
 import Paragraph from './Paragraph.component';
 import PAccent from './P-Accent.component';
 import JAccent from './J-Accent.component';
+import { MAIN_WIDTH, CONTENT_MAX_WIDTH } from '@utils/constants.util';
 
 const TITLE_TEXT = {
   title: 'All Hands on Dok',
@@ -61,11 +62,11 @@ const CArticle: React.FC = () => {
 };
 
 const ContentContainer = styled.div`
-  width: 80vw;
+  width: ${MAIN_WIDTH}vw;
 `;
 const Content = styled.div`
   margin: 40px auto;
-  max-width: 1000px;
+  max-width: ${CONTENT_MAX_WIDTH};
 `;
 const SAppBar = styled (AppBar)`
   color: rgb(33, 38, 34) !important;
@@ -75,6 +76,7 @@ const SIconButton = styled (IconButton)`
   margin-left: auto !important;
 `;
 const Container = styled.div`
+  background-color: #ECECEC !important;
   height: 100vh;
   &.article--show {
     animation: ${opacityAnimate ()} 0.6s;

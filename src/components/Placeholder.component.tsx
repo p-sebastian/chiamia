@@ -4,6 +4,13 @@ import { zoomAnimate } from '@utils/keyframes.util';
 import { useADispatch, useAShallowSelector, useASelector } from '@utils/recipes.util';
 import { toggleArticle } from '@actions/screen.actions';
 
+// @fixme on expanded placeholder resize
+/**
+ * When placeholder is expanded and the screen resizes
+ * it will keep the previous size since it was only set once
+ * onClick in useTransformer, what needs to be done its to listen
+ * to changes in size of the card component, and update the dimensions.
+ */
 type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
 type Props = {
   dimensions: Dimensions;
@@ -49,6 +56,7 @@ const onAnimationEnd: OnAnimationEnd = (dispatch, isExpanded, isShowing, setIsEx
 type PlaceholderProps = { transform: { from: string; to: string} };
 const Placeholder = styled.div<PlaceholderProps>`
   pointer-events: none;
+  display: flex;
   position: absolute;
   width: 100vw;
   height: 100vh;
