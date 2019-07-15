@@ -1,16 +1,14 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 import { HOC } from '@utils/types.util';
 import { useResize } from '@hooks/useResize.hook';
 import { useADispatch } from '@utils/recipes.util';
 import { setContentDimesions } from '@actions/screen.actions';
 import Button from '@material-ui/core/Button';
-import { SIDEBAR_WIDTH, MAIN_WIDTH } from '@utils/constants.util';
+import { MAIN_WIDTH } from '@utils/constants.util';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from 'next/link';
-import { Typo } from '@common/Typo.component';
 
 const withLayout: HOC = Page => () => {
   const dimensions = useResize ();
@@ -67,29 +65,5 @@ line-height: 2 !important;
     color: transparent;
   }
 `;
-// const Left = styled.div`
-//   display: flex;
-//   position: fixed;
-//   width: ${SIDEBAR_WIDTH}%;
-//   height: 100vh;
-//   /* background-image: linear-gradient(180deg, #9B4141, #FFFFFF); */
-//   background-color: #FFFFFF;
-//   /* background-color: #697895; */
-// `;
-// const Sidebar = styled.div`
-//   padding: 30px 4.347826086957%;
-//   display: flex;
-//   flex-direction: column;
-//   flex: 1;
-// `;
-// const ButtonContainer = styled.div`
-//   flex: 1;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: space-between;
-//   max-height: 40vh;
-//   padding: 0 20px;
-// `;
 
 export default withLayout;
