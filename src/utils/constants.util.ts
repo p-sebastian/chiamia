@@ -1,4 +1,4 @@
-export const SIDEBAR_WIDTH = 15;
+export const SIDEBAR_WIDTH = 0;
 export const MAIN_WIDTH = 100 - SIDEBAR_WIDTH; // 100 - SIDEBAR
 export const CONTENT_MAX_WIDTH = '1000px';
   // COLORS

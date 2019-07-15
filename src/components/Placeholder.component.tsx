@@ -64,7 +64,7 @@ const Placeholder = styled.div<PlaceholderProps>`
   top: 0;
   background-color: #CAD2E2;
   transform-origin: 0 0;
-  animation-duration: 1s;
+  animation-duration: 0.8s;
   animation-timing-function: cubic-bezier(0.165,0.84,0.44,1);
   animation-fill-mode: forwards;
   &.placeholder-animate--show {

@@ -86,9 +86,10 @@ const H1 = styled (Typography).attrs (() => ({ variant: 'h1' }))`
 `;
 const Header = styled.div`
   padding: 15px 4.347826086957%;
+  background-image: linear-gradient( 135deg, #65FDF0 10%, #1D6FA3 100%);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  background-image: linear-gradient(to bottom right, #5186FC, #1AD384);
+  /* background-image: linear-gradient(to bottom right, #5186FC, #1AD384); */
   overflow: hidden;
   border-bottom: 1px solid transparent;
   ${OnHover}:hover & {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import withLayout from '@components/hoc/withLayout.hoc';
 import styled from 'styled-components';
 
-const AboutPage = () => {
+const BlogPage = () => {
   return (
     <Container>
       <Link href="/home">
@@ -17,4 +17,4 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
-export default withLayout (AboutPage);
+export default withLayout (BlogPage);
