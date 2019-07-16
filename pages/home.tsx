@@ -6,11 +6,12 @@ import CSection from '@common/Section.component';
 import CArticle from '@common/Article.component';
 import { Typo } from '@common/Typo.component';
 import { DARK } from '@utils/constants.util';
+import Background from '@common/Background.component';
 
 const HomePage = () => {
 
   return (
-    <Container>
+    <Background src="/static/imgs/main_background.jpg">
       <MainContainer>
         <Title>Some Title, with some Text</Title>
         <Subtitle>Some subtitle with some text</Subtitle>
@@ -38,7 +39,7 @@ const HomePage = () => {
       <CSection isArticle>
         <CArticle />
       </CSection> */}
-    </Container>
+    </Background>
   );
 };
 
@@ -62,15 +63,15 @@ const Subtitle = Typo ('subtitle1')`
   color: ${DARK} !important;
   font-size: 1.6em !important;
 `;
-const Container = styled.div`
-  position: fixed;
-  height: 100vh;
-  width: 100%;
-  background-image: url('/static/imgs/main_background.jpg');
-  background-size:     cover;
-  background-repeat:   no-repeat;
-  background-position: center center; 
-  overflow-y: scroll;
-`;
+// const Container = styled.div`
+//   position: fixed;
+//   height: 100vh;
+//   width: 100%;
+//   background-image: url('/static/imgs/main_background.jpg');
+//   background-size:     cover;
+//   background-repeat:   no-repeat;
+//   background-position: center center; 
+//   overflow-y: scroll;
+// `;
 
 export default withLayout (HomePage);
