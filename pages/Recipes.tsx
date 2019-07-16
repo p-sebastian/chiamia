@@ -42,16 +42,16 @@ const Container = styled.div`
 `;
 
 const ListContainer = styled.div`
+  scroll-snap-type: y mandatory;
+  box-shadow: 
+    /* inset 0 6px 0px 3px #f2f1ef, 
+    inset 0 -6px 0px 0px #f2f1ef,  */
+    inset 4px 0 6px -2px ${DARK}, 
+    inset -4px 0 6px -2px ${DARK};
   display: flex;
   overflow-x: auto;
-  max-width: 25vw;
+  max-width: 20vw;
 `;
-const CList = styled (List)`
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-`;
-
 const Right = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@ const Right = styled.div`
   margin-right: 10%;
 `;
 const Title = Typo ('h1')`
-  margin-top: 15vh !important;
+  margin: 13vh 0 3vh 0 !important;
   line-height: 1.2em !important;
   color: ${DARK} !important;
   font-size: 2em !important;

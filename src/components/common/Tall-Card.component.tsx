@@ -31,9 +31,9 @@ const TallCard: React.FC<Props> = ({ isLast = false }) => {
             <Body>
               
             </Body>
-            <ImageContainer>
+            {/* <ImageContainer>
               <Image src={src} alt={alt} />
-            </ImageContainer>
+            </ImageContainer> */}
           </Content>
         </OnHover>
       </Anchor>
@@ -43,8 +43,10 @@ const TallCard: React.FC<Props> = ({ isLast = false }) => {
 };
 
 const Module = styled.div`
-  min-width: 15vw;
-  margin: 20px 8% 40px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  min-width: 16vw;
+  margin: 20px 1.6vw 40px;
   position: relative;
   display: block;
   max-height: 70vh;
@@ -53,8 +55,8 @@ const Module = styled.div`
       content: "";
       display: block;
       position: absolute;
-      right: -8%;
-      width: 8%;
+      right: -1.6vw;
+      width: 1.6vw;
       height: 1px;
     }
   }
@@ -69,6 +71,9 @@ const OnHover = styled.div`
   transition: all .6s cubic-bezier(.165,.84,.44,1);
   background-image: linear-gradient( 135deg, #90F7EC 10%, #32CCBC 100%);
   border-radius: 20px;
+  &:hover {
+    background-image: linear-gradient( 135deg, #7BF8EC 10%, #5BCBBF 100%);
+  }
   & :hover::after {
     opacity: 1;
   }
@@ -106,7 +111,7 @@ const H1 = styled (Typography).attrs (() => ({ variant: 'h1' }))`
   line-height: 1.35em;
 `;
 const Header = styled.div`
-  padding: 15px 4.347826086957%;
+  padding: 15px 7%;
   background: transparent;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
