@@ -55,11 +55,6 @@ const Container = styled.div`
 
 const ListContainer = styled.div`
   scroll-snap-type: y mandatory;
-  box-shadow: 
-    /* inset 0 6px 0px 3px #f2f1ef, 
-    inset 0 -6px 0px 0px #f2f1ef,  */
-    inset 4px 0 6px -2px ${DARK}, 
-    inset -4px 0 6px -2px ${DARK};
   display: flex;
   overflow-x: auto;
   max-width: 20vw;

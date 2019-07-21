@@ -25,7 +25,7 @@ const TallCard: React.FC<Props> = ({ isLast = false, onClick }) => {
             <Subtitle1>
               New Logo and Identity for Atlanta Humane Society
             </Subtitle1>
-            <H1>Home is where the Pet is</H1>
+            <H1>Fruit Asai</H1>
           </Header>
           <Content>
             <Body>
@@ -69,11 +69,8 @@ const OnHover = styled.div`
   display: block;
   box-shadow: 2px 2px 5px rgba(0,0,0,.2);
   transition: all .6s cubic-bezier(.165,.84,.44,1);
-  background-image: linear-gradient( 135deg, #90F7EC 10%, #32CCBC 100%);
+  background-image: linear-gradient( 135deg, #FD6E6A 10%, #FFC600 100%);
   border-radius: 20px;
-  &:hover {
-    background-image: linear-gradient( 135deg, #7BF8EC 10%, #5BCBBF 100%);
-  }
   & :hover::after {
     opacity: 1;
   }
@@ -100,12 +97,10 @@ const Subtitle1 = styled (Typography).attrs (() => ({ variant: 'subtitle1' }))`
   z-index: 1;
   line-height: 1.5em;
   padding: 0 0 10px;
-  border-bottom: 1px solid ${DARK};
+  border-bottom: 1px solid white;
   margin: 0 0 10px;
-  color: ${DARK} !important;
 `;
 const H1 = styled (Typography).attrs (() => ({ variant: 'h1' }))`
-  color: ${DARK} !important;
   position: relative;
   z-index: 1;
   line-height: 1.35em;
@@ -119,14 +114,13 @@ const Header = styled.div`
   border-bottom: 1px solid transparent;
   ${OnHover}:hover & {
     background-image: none !important;
-    border-bottom: 1px solid ${DARK};
-    ${H1} {
-      color: ${DARK};
+    /* border-bottom: 1px solid ${DARK}; */
+    /* ${H1} {
     }
     ${Subtitle1} {
       color: rgb(33, 38, 34);
       border-color: rgb(33, 38, 34);
-    }
+    } */
     transition: all .6s cubic-bezier(.165,.84,.44,1);
   }
 `;
