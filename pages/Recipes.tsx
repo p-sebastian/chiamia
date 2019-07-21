@@ -2,21 +2,16 @@ import React, { useCallback } from 'react';
 import Link from 'next/link';
 import withLayout from '@components/hoc/withLayout.hoc';
 import styled from 'styled-components';
-import CCard from '@common/Card.component';
 import TallCard from '@common/Tall-Card.component';
 import CSection from '@common/Section.component';
 import CArticle from '@common/Article.component';
 import Background from '@common/Background.component';
-import List from '@material-ui/core/List';
 import { Typo } from '@common/Typo.component';
 import { DARK } from '@utils/constants.util';
-import { Grid } from '@material-ui/core';
-import { useASelector } from '@utils/recipes.util';
 import { useTransform } from '@hooks/useTransform.hook';
 import CPlaceholder from '@components/Placeholder.component';
 
 const RecipesPage = () => {
-  const screenWidth = useASelector (state => state.screen.screenWidth);
   const [dimensions, setDimensions, onClick] = useTransform ();
   const reset = useCallback (
     () => setDimensions ({ width: 0, height: 0, left: 0, top: 0, right: 0 }),
@@ -25,17 +20,15 @@ const RecipesPage = () => {
 
   return (
     <Container>
-      <Background src="/static/imgs/recipes_recent.jpg">
-        <Right>
+      <Background position="right" src="/static/imgs/recipes_recent.jpg">
+        <Content>
           <Title>Most Recent</Title>
           <ListContainer>
-            {/* <CList> */}
-              <TallCard onClick={onClick}/>
-              <TallCard onClick={onClick}/>
-              <TallCard onClick={onClick} isLast/>
-            {/* </CList> */}
+            <TallCard onClick={onClick}/>
+            <TallCard onClick={onClick}/>
+            <TallCard onClick={onClick} isLast/>
           </ListContainer>
-        </Right>
+        </Content>
       </Background>
       <CSection isArticle>
         <CArticle />
@@ -43,10 +36,6 @@ const RecipesPage = () => {
       <CPlaceholder reset={reset} dimensions={dimensions} />
     </Container>
   );
-};
-
-const onCardClick = () => {
-
 };
 
 const Container = styled.div`
@@ -59,16 +48,16 @@ const ListContainer = styled.div`
   overflow-x: auto;
   max-width: 20vw;
 `;
-const Right = styled.div`
+const Content = styled.div`
   display: flex;
+  margin-top: -10%;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   height: 100vh;
   max-height: 100vh;
   max-width: 25vw;
-  float: right;
-  margin-right: 10%;
+  /* margin-right: 10%; */
 `;
 const Title = Typo ('h1')`
   margin: 13vh 0 3vh 0 !important;

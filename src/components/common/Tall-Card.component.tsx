@@ -1,20 +1,10 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Typography from '@material-ui/core/Typography';
-import withGrid from '@components/hoc/withGrid.hoc';
-import { useTransform } from '@hooks/useTransform.hook';
-import CPlaceholder from '@components/Placeholder.component';
 import { DARK } from '@utils/constants.util';
 
-const src = 'https://www.underconsideration.com/brandnew/archives/atlanta_humane_society_logo_before_after.png';
-const alt = 'New Logo and Identity for Atlanta Humane Society by Matchstic';
 type Props = { isLast?: boolean, onClick: (ref: React.RefObject<HTMLDivElement>) => () => void };
 const TallCard: React.FC<Props> = ({ isLast = false, onClick }) => {
-  // const [dimensions, setDimensions, onClick] = useTransform ();
-  // const reset = useCallback (
-  //   () => setDimensions ({ width: 0, height: 0, left: 0, top: 0, right: 0 }),
-  //   [dimensions]
-  // );
 
   const ref = useRef<HTMLDivElement> (null);
   return (
@@ -31,13 +21,9 @@ const TallCard: React.FC<Props> = ({ isLast = false, onClick }) => {
             <Body>
               
             </Body>
-            {/* <ImageContainer>
-              <Image src={src} alt={alt} />
-            </ImageContainer> */}
           </Content>
         </OnHover>
       </Anchor>
-      {/* <CPlaceholder reset={reset} dimensions={dimensions} /> */}
     </Module>
   );
 };
@@ -129,20 +115,6 @@ const Content = styled.div`
   height: auto;
   position: relative;
   overflow: hidden;
-`;
-const ImageContainer = styled.div`
-  float: left;
-  line-height: 0;
-  width: 100%;
-`;
-const Image = styled.img`
-  max-width: 100%;
-  border: 0;
-  display: block;
-  margin: 0;
-  padding: 0;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 `;
 
 export default TallCard;
