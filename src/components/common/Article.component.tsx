@@ -1,12 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useASelector, useADispatch } from '@utils/recipes.util';
+import { useASelector } from '@utils/recipes.util';
 import { opacityAnimate } from '@utils/keyframes.util';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import { Close } from '@material-ui/icons';
-import IconButton from '@material-ui/core/IconButton';
-import { toggleArticle } from '@actions/screen.actions';
 import CTitle from './Title.component';
 import Jumbotron from './Jumbotron.component';
 import Paragraph from './Paragraph.component';
@@ -32,17 +27,9 @@ const TEXT = `
 const CArticle: React.FC = () => {
   const showArticle = useASelector (state => state.screen.showArticle);
   const classes = showArticle ? 'article--show' : 'article--hide';
-  const dispatch = useADispatch ();
 
   return (
     <Container className={classes}>
-      <SAppBar elevation={1} color="inherit" position="sticky">
-        <Toolbar>
-          <SIconButton onClick={() => dispatch (toggleArticle (false))}>
-            <Close />
-          </SIconButton>
-        </Toolbar>
-      </SAppBar>
       <ContentContainer>
         <Content>
           <CTitle
@@ -67,19 +54,13 @@ const Content = styled.div`
   margin: 40px auto;
   max-width: ${CONTENT_MAX_WIDTH};
 `;
-const SAppBar = styled (AppBar)`
-  color: rgb(33, 38, 34) !important;
-  background-color: #ECECEC !important;
-`;
-const SIconButton = styled (IconButton)`
-  margin-left: auto !important;
-`;
 const Container = styled.div`
+  padding-top: 50px;
   background-color: #ECECEC !important;
   height: 100vh;
   &.article--show {
     animation: ${opacityAnimate ()} 0.6s;
-    z-index: 100;
+    z-index: 101;
   }
   &.article--hide {
     animation: ${opacityAnimate (true)} 0.6s;

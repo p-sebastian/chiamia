@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HOC } from '@utils/types.util';
+import { HOC, TActions } from '@utils/types.util';
 import { useResize } from '@hooks/useResize.hook';
-import { useADispatch } from '@utils/recipes.util';
-import { setContentDimesions } from '@actions/screen.actions';
+import { useADispatch, useASelector } from '@utils/recipes.util';
+import { setContentDimesions, toggleArticle } from '@actions/screen.actions';
 import Button from '@material-ui/core/Button';
 import { MAIN_WIDTH } from '@utils/constants.util';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Link from 'next/link';
+import { IconButton } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
 
 const withLayout: HOC = Page => () => {
+  const isShowing = useASelector (state => state.screen.isShowing);
   const dimensions = useResize ();
   const dispatch = useADispatch ();
   dispatch (setContentDimesions (dimensions));
@@ -20,15 +23,29 @@ const withLayout: HOC = Page => () => {
       <SAppBar elevation={1} color="inherit" position="fixed">
         <Toolbar>
           <HeaderButton isTitle href="/home">Chiamia</HeaderButton>
-          <HeaderButton href="/recipes">Recipes</HeaderButton>
-          <HeaderButton href="/blog">Blog</HeaderButton>
-          <HeaderButton href="/about">About</HeaderButton>
+          {renderButtons (isShowing, dispatch)}
         </Toolbar>
       </SAppBar>
       <Right>
         <Page />
       </Right>
     </Container>
+  );
+};
+const renderButtons = (isShowing: boolean, dispatch: React.Dispatch<TActions>) => {
+  if (isShowing) {
+    return (
+      <SIconButton onClick={() => dispatch (toggleArticle (false))}>
+        <Close />
+      </SIconButton>
+    );
+  }
+  return (
+    <ButtonContainer>
+      <HeaderButton href="/recipes">Recipes</HeaderButton>
+      <HeaderButton href="/blog">Blog</HeaderButton>
+      <HeaderButton href="/about">About</HeaderButton>
+    </ButtonContainer>
   );
 };
 
@@ -64,6 +81,12 @@ line-height: 2 !important;
     background-clip: text;
     color: transparent;
   }
+`;
+const SIconButton = styled (IconButton)`
+  margin-left: auto !important;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
 `;
 
 export default withLayout;

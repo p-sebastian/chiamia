@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Link from 'next/link';
 import withLayout from '@components/hoc/withLayout.hoc';
 import styled from 'styled-components';
@@ -12,9 +12,16 @@ import { Typo } from '@common/Typo.component';
 import { DARK } from '@utils/constants.util';
 import { Grid } from '@material-ui/core';
 import { useASelector } from '@utils/recipes.util';
+import { useTransform } from '@hooks/useTransform.hook';
+import CPlaceholder from '@components/Placeholder.component';
 
 const RecipesPage = () => {
   const screenWidth = useASelector (state => state.screen.screenWidth);
+  const [dimensions, setDimensions, onClick] = useTransform ();
+  const reset = useCallback (
+    () => setDimensions ({ width: 0, height: 0, left: 0, top: 0, right: 0 }),
+    [dimensions]
+  );
 
   return (
     <Container>
@@ -23,9 +30,9 @@ const RecipesPage = () => {
           <Title>Most Recent</Title>
           <ListContainer>
             {/* <CList> */}
-              <TallCard/>
-              <TallCard/>
-              <TallCard isLast/>
+              <TallCard onClick={onClick}/>
+              <TallCard onClick={onClick}/>
+              <TallCard onClick={onClick} isLast/>
             {/* </CList> */}
           </ListContainer>
         </Right>
@@ -33,8 +40,13 @@ const RecipesPage = () => {
       <CSection isArticle>
         <CArticle />
       </CSection>
+      <CPlaceholder reset={reset} dimensions={dimensions} />
     </Container>
   );
+};
+
+const onCardClick = () => {
+
 };
 
 const Container = styled.div`

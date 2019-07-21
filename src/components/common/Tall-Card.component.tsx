@@ -8,13 +8,13 @@ import { DARK } from '@utils/constants.util';
 
 const src = 'https://www.underconsideration.com/brandnew/archives/atlanta_humane_society_logo_before_after.png';
 const alt = 'New Logo and Identity for Atlanta Humane Society by Matchstic';
-type Props = { isLast?: boolean };
-const TallCard: React.FC<Props> = ({ isLast = false }) => {
-  const [dimensions, setDimensions, onClick] = useTransform ();
-  const reset = useCallback (
-    () => setDimensions ({ width: 0, height: 0, left: 0, top: 0, right: 0 }),
-    [dimensions]
-  );
+type Props = { isLast?: boolean, onClick: (ref: React.RefObject<HTMLDivElement>) => () => void };
+const TallCard: React.FC<Props> = ({ isLast = false, onClick }) => {
+  // const [dimensions, setDimensions, onClick] = useTransform ();
+  // const reset = useCallback (
+  //   () => setDimensions ({ width: 0, height: 0, left: 0, top: 0, right: 0 }),
+  //   [dimensions]
+  // );
 
   const ref = useRef<HTMLDivElement> (null);
   return (
@@ -37,7 +37,7 @@ const TallCard: React.FC<Props> = ({ isLast = false }) => {
           </Content>
         </OnHover>
       </Anchor>
-      <CPlaceholder reset={reset} dimensions={dimensions} />
+      {/* <CPlaceholder reset={reset} dimensions={dimensions} /> */}
     </Module>
   );
 };
@@ -119,9 +119,9 @@ const Header = styled.div`
   border-bottom: 1px solid transparent;
   ${OnHover}:hover & {
     background-image: none !important;
-    border-bottom: 1px solid #9634F7;
+    border-bottom: 1px solid ${DARK};
     ${H1} {
-      color: #9634F7;
+      color: ${DARK};
     }
     ${Subtitle1} {
       color: rgb(33, 38, 34);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAShallowSelector, useADispatch } from '@utils/recipes.util';
 import { setPlaceholderTransform } from '@actions/screen.actions';
-import { SIDEBAR_WIDTH, MAIN_WIDTH } from '@utils/constants.util';
+import { MAIN_WIDTH } from '@utils/constants.util';
 
 type Dimensions<N = number> = { width: N, height: N, left: N, top: N, right: N };
 type Ref<E = HTMLDivElement> = React.RefObject<E>;
@@ -22,12 +22,9 @@ export const useTransform: UseTransform = () => {
   const onClick = (ref: Ref) => () => {
     const { height, width, left, top, right } = ref.current!.getBoundingClientRect ();
     // Margin of card
-    // space in the left minus the size of the sidebar
-    // which in this case is 20% the screen size
-    const x = left - screenWidth * (SIDEBAR_WIDTH / 100);
-    const from = `scale3d(${width / screenWidth}, ${height / screenHeight}, 1)`;
+    const from = `translate3d(${left}px, ${top}px, 0) scale3d(${width / screenWidth}, ${height / screenHeight}, 1)`;
     // scale the x size of the main content
-    const to = `translate3d(-${x}px, -${top}px, 0) scale3d(${MAIN_WIDTH / 100}, 1, 1)`;
+    const to = `scale3d(${MAIN_WIDTH / 100}, 1, 1)`;
 
     setDimensions ({ height, width, left, top, right });
     // also begins expansion of placeholder
